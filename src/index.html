@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>APQ query hasher</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+		<script type="module" src="index.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <h1>APQ Hasher</h1>
+      <div>
+        <input id="addTypename" type="checkbox" checked="true">Add __typename to objects?</input>
+      </div>
+      <div>
+        <button id="hashit">Format and Hash</button>
+      </div>
+      <div>
+        <h3>Query to format and hash</h3>
+        <textarea id="rawQuery" cols="50" rows="15">query MyQuery { me { id, name } }</textarea>
+      </div>
+      <div id="hashDiv">
+        <span>Hash: </span>
+        <span id="hash"></span>
+      </div>
+      <div id="formatted">
+        <h3>Formatted query used in hash</h3>
+        <textarea id="printed" cols="50" rows="15"></textarea>
+      </div>
+    </div>
+  </body>
+</html>
