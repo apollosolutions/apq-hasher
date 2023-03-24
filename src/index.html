@@ -5,9 +5,42 @@
     <title>APQ query hasher</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 		<script type="module" src="index.js"></script>
+    <style>
+      /* Style the text area to make it look nice */
+      textarea {
+        width: 100%;
+        height: 400px;
+        font-family: monospace;
+        font-size: 14px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .notice {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #f2f2f2;
+        color: #333;
+        border-radius: 5px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        animation: fadeOut 5s forwards;
+      }
+
+      @keyframes fadeOut {
+        0% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+    </style> 
   </head>
   <body>
     <div id="container">
+      <div class="notice">
+        Copied to clipboard.
+      </div>
       <h1>APQ Hasher</h1>
       <div>
         <input id="addTypename" type="checkbox" checked="true">Add __typename to objects?</input>
@@ -20,8 +53,20 @@
         <textarea id="rawQuery" cols="50" rows="15">query MyQuery { me { id, name } }</textarea>
       </div>
       <div id="hashDiv">
-        <span>Hash: </span>
-        <span id="hash"></span>
+
+        <div style="cursor: pointer;">
+          <span>APQ: </span>
+          <span id="apqHash" style="color:#FFB300;"></span>
+        </div>
+        <div style="cursor: pointer;">
+          <span>Query id: </span>
+          <span id="queryId" style="color:#FFB300;"></span>
+        </div>
+        <div style="cursor: pointer;">
+          <span>Studio operation id: </span>
+          <span id="studioOperationId" style="color:#FFB300;"></span>
+        </div>
+
       </div>
       <div id="formatted">
         <h3>Formatted query used in hash</h3>
