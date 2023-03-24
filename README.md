@@ -8,6 +8,10 @@ A simple web app for generating the hash of a query that is used in APQ requests
 
 ---
 
+## Install dependencies
+
+```yarn install``` or ```npm install```
+
 ## Running the app
 
 ```yarn start```
