@@ -1,7 +1,7 @@
 import { print } from 'graphql'
 import { __assign, __spreadArray } from 'tslib'
 import { gql } from 'graphql-tag'
-import { addTypenameToDocument, sha } from './utils'
+import { addTypenameToDocument, sha, getOperationName } from './utils'
 import { usageReportingSignature } from '@apollo/utils.usagereporting'
 import crypto from 'crypto'
 
@@ -30,9 +30,12 @@ queryIdDiv.addEventListener("click", copyText);
 
 hashitButton.addEventListener('click', (e) => {
   const addTypenameInput = document.getElementById('addTypename')
-  const queryDoc = gql(rawQueryTextarea.value)
+  let queryDoc = gql(rawQueryTextarea.value)
+  if (addTypenameInput.checked) {
+    queryDoc = addTypenameToDocument(queryDoc)
+  }
 
-  const operationName = "GetAccount"
+  const operationName = getOperationName(queryDoc);
 
 // see https://github.com/apollographql/apollo-utils/blob/main/packages/usageReporting/src/signature.ts
   const sig = usageReportingSignature(queryDoc)
@@ -44,12 +47,7 @@ hashitButton.addEventListener('click', (e) => {
 
   const studioOperationHash = queryId.slice(queryId.length - 4)
   
-  let typed = queryDoc
-  if (addTypenameInput.checked) {
-    typed = addTypenameToDocument(queryDoc)
-  }
-
-  const prettified = print(typed)
+  const prettified = print(queryDoc)
   const APQHash = sha(prettified)
   apqHashDiv.innerText = APQHash
   studioOpsDiv.innerText = studioOperationHash

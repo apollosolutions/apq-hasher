@@ -67,3 +67,11 @@ export const addTypenameToDocument = Object.assign(
     }
   }
 )
+
+export const getOperationName = (operationDoc) => {
+  const node = operationDoc.definitions.find(e => e.kind === 'OperationDefinition');
+  if (!node) {
+    throw "Unknown operation name";
+  }
+  return node.name.value;
+}
