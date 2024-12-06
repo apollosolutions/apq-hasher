@@ -1,0 +1,4 @@
+name: apq-hasher
+description: Tool to help generate APQ hashes for a given operation using Apollo Client.
+tags:
+  - APQ
